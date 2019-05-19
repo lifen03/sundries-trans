@@ -528,5 +528,5 @@ Clinear={12.92CsRGB，(1.055CsRGB 0.055)2.4，CsRGB0.04045CsRGB>>0.04045
 
 特别感谢[Chris Cooper](http://www.coopernetics.com/blog/)和[Ryan Kaplan](http://rykap.com/)就该职位草案提供反馈。
 
-*如果你喜欢看这篇文章，你应该在[twitter上关注我](https://twitter.com/jlfwong)，看看[我写的其他博客文章](http://jamie-wong.com/)，或者甚至[和我一起在Figma工作](https://www.figma.com/careers)！*
+*如果你喜欢看这篇文章，你应该在[twitter上关注我((Jamie Wong))](https://twitter.com/jlfwong)，看看[我写的其他博客文章](http://jamie-wong.com/)，或者甚至[和我一起在Figma工作](https://www.figma.com/careers)！*
 
