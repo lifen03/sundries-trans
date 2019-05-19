@@ -1,5 +1,3 @@
-# [颜色：从十六进制编码到眼球（公式待处理）](https://www.yuque.com/ysfe/ykx/color)
-
 [原文地址](http://jamie-wong.com/post/color/?from=groupmessage&isappinstalled=0)
 
 作者：[Jamie Wong](http://jamie-wong.com/)@创作时间：2018-04-03  
