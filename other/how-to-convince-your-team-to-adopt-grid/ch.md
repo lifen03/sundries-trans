@@ -1,4 +1,4 @@
-# [如何说服你的团队采用CSS Grid](https://css-irl.info/how-to-convince-your-team-to-adopt-grid/)
+# [如何说服你的团队采用CSS Grid](https://www.yuque.com/ysfe/ykx/grid)
 
 ![Performance](https://css-irl.info/how-to-convince-your-team-2b6332cbb969c7150425ca2858420ec4.svg)
 
