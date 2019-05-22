@@ -1,6 +1,6 @@
 # [如何说服你的团队采用CSS Grid](https://www.yuque.com/ysfe/ykx/grid)
 
-![Performance](https://yylifen.github.io/sundries-trans/other/how-to-convince-your-team-to-adopt-grid/images/how-to-convince-your-team-2b6332cbb969c7150425ca2858420ec4.svg)
+![](https://yylifen.github.io/sundries-trans/other/how-to-convince-your-team-to-adopt-grid/images/how-to-convince-your-team-2b6332cbb969c7150425ca2858420ec4.svg)
 
 <b>作者：[CSSInRealLife](https://twitter.com/CSSInRealLife)@创作时间：2019-03-09   [原文地址](https://css-irl.info/how-to-convince-your-team-to-adopt-grid/)</b>
 
