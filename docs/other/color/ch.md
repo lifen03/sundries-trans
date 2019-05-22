@@ -1,4 +1,4 @@
-# [颜色：从十六进制编码到眼球（公式待处理）](https://www.yuque.com/ysfe/ykx/color)
+# [颜色：从十六进制编码到眼球](https://www.yuque.com/ysfe/ykx/color)
 
 [原文地址](http://jamie-wong.com/post/color/?from=groupmessage&isappinstalled=0)
 
@@ -61,6 +61,7 @@
 无线电波、微波、红外、可见光、紫外线、x射线和伽马射线都是电磁辐射的形式。虽然这些东西都有不同的名称，但这些名称实际上只是在电磁光谱中标记不同的波长范围。
 
 ![](http://jamie-wong.com/images/color/electromagneticSpectrum.png)
+
 *电磁波谱*
 
 电磁辐射的最小单位是光子。光子中包含的能量与其对应波的频率成正比，高能光子对应于高频波。
@@ -68,6 +69,7 @@
 要真正理解颜色，我们首先需要了解辐射。让我们仔细看看白炽灯泡的辐射。
 
 ![](http://jamie-wong.com/images/color/incandescent.png)
+
 *照片来自[Alex Iby](https://unsplash.com/photos/HfR0W6HW_Cw)*
 
 我们可能想知道灯泡辐射了多少能量。物体的**辐射通量**![](https://yylifen.github.io/sundries-trans/other/color/svg/10.svg)是每秒发射的总能量，以瓦茨为单位。100W白炽灯泡的辐射通量约为80W，其余20W直接转化为无辐射热。
@@ -103,6 +105,7 @@
 ## 人类感知到的亮度
 
 ![](http://jamie-wong.com/images/color/bweye.png)
+
 *照片来自[Christopher Burns](https://unsplash.com/photos/QaGNhezu_5Q)*
 
 正如我们看到白炽灯泡在所有波长上的辐射都不一样，我们的眼睛对所有波长的辐射敏感度也都不一样。如果我们测量人眼对每个波长的敏感度，就会得到一个光度函数。标准光度函数![](https://yylifen.github.io/sundries-trans/other/color/svg/8.svg)如下所示：
@@ -116,6 +119,7 @@
 其他动物的眼睛对不同的波长范围很敏感，为此有不同的光度功能。鸟类可以看到的紫外线辐射范围为：从![](https://yylifen.github.io/sundries-trans/other/color/svg/5.svg) 到 ![](https://yylifen.github.io/sundries-trans/other/color/svg/7.svg)，因此，如果鸟类学者已经定义了电磁光谱，那就属于它们的“可见光”范围了！。
 
 ![](http://jamie-wong.com/images/color/owl.png)
+
 *照片来自[Timothy Rhyne](https://unsplash.com/photos/0J6cTw0V2lE)*
 
 通过将光谱通量图与光度函数![](https://yylifen.github.io/sundries-trans/other/color/svg/8.svg)​相乘，我们得到了一个描述光源发射的每个波长对人类感知亮度的贡献函数。
@@ -147,6 +151,7 @@
 ## 量化颜色
 
 ![](http://jamie-wong.com/images/color/lemon.png)
+
 *照片来自[Lauren Mancke](https://unsplash.com/photos/sil2Hx4iupI)*
 
 我们如何识别给定的颜色？如果我面前有柠檬，我怎么能通过电话告诉你它是什么颜色的？我也许会告诉你“柠檬是黄色的”，但是哪个是黄色的呢？你如何准确地识别每一种黄色？
@@ -156,6 +161,7 @@
 由于了解到颜色是人类对电磁辐射的解释，我们可能会倾向于通过光谱通量从数学上定义颜色。任何人类可见的颜色将是一些加权组合单色(单波长)的颜色。单色颜色也称为光谱颜色。
 
 ![](http://jamie-wong.com/images/color/Rainbow.png)
+
 *波长单色*
 
 对于任何给定的物体，我们都可以测量它的发射(或反射率)光谱，并利用它精确地识别颜色。如果我们能复制光谱，我们当然可以复制颜色！
@@ -181,6 +187,7 @@
 ## 光学生物学
 
 ![](http://jamie-wong.com/images/color/coloreye.png)
+
 *照片来自[Amanda Dalbjörn](https://unsplash.com/photos/UbJMy92p8wk)*
 
 我们对光的感知是我们眼睛中特殊的称为“视杆细胞”和“视锥细胞”的责任。视杆细胞在弱光环境下非常重要，而且在彩色视觉中也不起多大作用，所以我们将重点放在视锥细胞上。
@@ -221,6 +228,7 @@
 首先，并不是所有的三重态值(也称为**三刺激值**)在物理上都是可能的。考虑LMS坐标(0，1，0)。为了在物理上实现这个坐标，我们需要找到刺激M锥的方法，而不需要刺激L或S锥。由于M锥的灵敏度曲线在所有波长上都明显重叠于L或S中的至少一个，这是不可能的！
 
 ![](http://jamie-wong.com/images/color/Cones.png)
+
 *任何刺激M锥的波长也会刺激L锥或S锥(或两者兼而有之)。*
 
 这个事实的一个有问题的副作用是很难只增加对其中一个锥的刺激。特别是，这将使它不是一个很好的选择，以构建显示硬件。
@@ -234,6 +242,7 @@
 尽管他们可能还不知道眼睛里有三种颜色，但至少早在一百年前就有人提出了这样的观点，即所有可见的颜色都可以由三种颜色组合而成。
 
 ![](http://jamie-wong.com/images/color/tricolor.png)
+
 *查尔斯·海特(Charles Hayter，1826)关于三色理论的一个例子*
 
 Wright和Guild的想法是，建造一种仪器，让测试对象将三种固定波长光源组合在一起，重建测试颜色。设置应该如下所示：
@@ -295,6 +304,7 @@ Wright和Guild的想法是，建造一种仪器，让测试对象将三种固定
 将其降到两个维度的一个简单方法是为每一对值都有一个单独的图，如下所示：
 
 ![](http://jamie-wong.com/images/color/RGBPairPlots.png)
+
 *绘制组件对，保持第三个坐标常数*
 
 在每一个场景中，我们通过保持一个常量来丢弃一维。与其保持一个红色、绿色和蓝色的常量，不如有一个场景显示彩虹的所有颜色以及它们的组合，同时保持亮度不变。
@@ -374,6 +384,7 @@ GAMUT通常由放置在XY色度图中的三角形表示。例如，这是CIE RGB
 与在配色实验中使用的测试灯不同，亚像素不发射单色光。每种亚像素都有它自己的光谱分布，而且每个设备都有不同的光谱分布。
 
 ![](http://jamie-wong.com/images/color/subpixelSpectra.png)
+
 *MacBook Air按[频率计](https://fluxometer.com/rainbow/)的亚像素光谱数据*
 
 使用Macbook Pro上的ColeSync实用程序，我能够确定屏幕的XY空间范围。
@@ -390,7 +401,8 @@ sRGB(“标准红绿蓝”)是惠普和微软在1996年创建的一个颜色空�
 
 该标准指定了红色、绿色和蓝色原色的色度。
 
-| 色品 | 红 | 绿 | 蓝 |
+| 色度 | 红 | 绿 | 蓝 |
+| :----: | :----: | :----: | :----: |
 | x |   0.6400 |	0.3000 |	0.1500 |
 | y |	0.3300 |	0.6000 |    0.0600 |
 | Y |	0.2126 |	0.751 |    0.0722 |
