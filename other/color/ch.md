@@ -72,7 +72,7 @@
 
 *照片来自[Alex Iby](https://unsplash.com/photos/HfR0W6HW_Cw)*
 
-我们可能想知道灯泡辐射了多少能量。物体的**辐射通量**(\phi_eΦe​)是每秒发射的总能量，以瓦茨为单位。100W白炽灯泡的辐射通量约为80W，其余20W直接转化为无辐射热。
+我们可能想知道灯泡辐射了多少能量。物体的**辐射通量**![](https://github.com/yylifen/sundries-trans/tree/master/other/color/svg/10.svg)是每秒发射的总能量，以瓦茨为单位。100W白炽灯泡的辐射通量约为80W，其余20W直接转化为无辐射热。
 
 如果我们想知道每个波长产生了多少能量，我们可以看看**光谱通量**。一个物体的光谱通量(\Phi_{e，\lambda}Φe，λ​)是单位波长的辐射通量，通常以瓦茨/纳米计测量。
 
@@ -84,7 +84,7 @@
 
 ![Performance](http://jamie-wong.com/images/color/SpectralFlux2.png)
 
-Φ ebulb ≤ = 0 ∞ ≤ Φ e, λ bulb ≤ (λ) d λ = 80W
+$$Φ_{e}^{bulb}​=\int_{0}^{\infty}Φ_{e,λ}^{bulb​}(λ)dλ=80W$$
 
 现在你可能已经从环保运动中听说白炽灯灯泡效率很低，你可能会想，“好吧，80%的白炽灯看上去并不那么糟糕”。
 
