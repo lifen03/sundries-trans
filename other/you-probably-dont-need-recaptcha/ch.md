@@ -8,7 +8,7 @@
 
 > [ReCAPTCHA在维基百科的中文链接](https://zh.wikipedia.org/wiki/ReCAPTCHA)
 
-![](https://kevv.net/wp-content/uploads/2019/06/recaptcha.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/recaptcha.png)
 
 ### reCAPTCHA是有害的
 
@@ -26,7 +26,7 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 如果用户试图通过使用妨碍谷歌服务和跟踪的软件(如VPN、TBB和许多反跟踪浏览器加载项和修改)来“选择”谷歌的服务和跟踪，那么reCAPTCHA就会变得更加困难。为了演示“非常乏味”的含义，下面是我使用TBB解决一个reCAPTCHA的实时记录：
 
-![](https://kevv.net/wp-content/uploads/2019/06/recaptcha-1.webm)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/recaptcha-1.webm)
 
 我很幸运，只需要完成两项挑战。有时有十个甚至更多。看了上面的视频，你可能会想：“我知道网络很慢，但我不知道它有那么慢！”你注意到这一差异是正确的。如果打开WebDeveloper控制台，我们可以看到，对于新的验证码映像的HTTP请求只需要几百毫秒。尽管如此，谷歌的严重混乱的JavaScript故意每次将新图像的出现推迟几秒钟，我肯定这与机器人被迫等待时放弃的事实有关。这不是一个好的方式来对待那些不想做无报酬劳动的用户，并且被谷歌进行指纹识别。请记住，上面的视频展示了reCAPTCHAUX(一些[用户脚本](https://greasyfork.org/en/scripts/31088-morecaptcha/code)可能改进的)最坏的情况之一，并且普通用户的体验要快得多，只要他们不试图阻止Google的任何跟踪，并且不会犯很多错误。
 
@@ -69,11 +69,11 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 如果你的网站是以社区为中心的，如论坛或博客，你可以问一个特定社区的问题，你社区的潜在成员应该知道答案。这是阻止用户加入你认为不应该参与的社区的一个简单而伟大的方法，要么是因为他们缺乏基本的相关知识，要么是因为他们无法或不愿意学习。例如，一群数学家可能会要求用户给出一个简单的公式或求解一个方程，给出它的图像。
 
-![](https://kevv.net/wp-content/uploads/2019/06/complex_captcha.gif)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/complex_captcha.gif)
 
 另一个例子是，一群小众媒体鉴赏家可能会要求用户识别他们认为对他们共同的文化很重要的某个特征。
 
-![](https://kevv.net/wp-content/uploads/2019/06/anime_captca.jpg)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/anime_captca.jpg)
 
 > 社会成员的质素是最重要的。
 
@@ -93,7 +93,7 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 [Django简单的Captcha](https://github.com/mbi/django-simple-captcha)为Django项目提供了一个简单的验证码。
 
-![](https://kevv.net/wp-content/uploads/2019/06/django_simple_captcha.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/django_simple_captcha.png)
 
 > Django简单的验证码，这实际上已经阻止了许多攻击者。
 
@@ -101,7 +101,7 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 [Laravel5的Captcha](https://github.com/mewebstudio/captcha)为Laravel项目提供了一个可定制的验证码。
 
-![](https://kevv.net/wp-content/uploads/2019/06/laravel_captcha.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/laravel_captcha.png)
 
 > Laravel5的Captcha，是可定制的
 
@@ -109,11 +109,11 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 流行的CMS解决方案通常具有适合于基本目的的至少一个简单的CAPTCHA插件。以下是[WordPress](https://wordpress.org/plugins/really-simple-captcha/)、[Drupal](https://www.drupal.org/project/draggable_captcha)和[通用PHP](https://www.phpcaptcha.org/try-securimage/)的一些示例。
 
-![](https://kevv.net/wp-content/uploads/2019/06/phpcaptcha.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/phpcaptcha.png)
 
 > PHP安全图像验证码
 
-![](https://kevv.net/wp-content/uploads/2019/06/drupal_captcha.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/drupal_captcha.png)
 
 > Drupal匹配幻灯片
 
@@ -121,7 +121,7 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 正如基本JavaScript停止大多数未定制的垃圾邮件一样，更高级的脚本也可以阻止大量定制的垃圾邮件。例如，有些网站要求你滑动jQuery滑块元素才能成功提交表单。对于[WordPress](https://wordpress.org/plugins/slider-captcha/)、[jQuery](https://github.com/ist-dsi/jquery-ui-slider-captcha)([jQueryUI滑块](https://jqueryui.com/slider/)、[引导滑块](https://github.com/seiyria/bootstrap-slider))、[Prestashop](https://catalogo-onlinersi.net/en/add-ons-prestashop-modules/264-slide-captcha-prestashop-module.html)、[Node](https://www.npmjs.com/package/slider-puzzle-captcha)等等，都有这样的例子，尽管这些示例可能不适合生产使用，而且我还没有对它们进行测试。
 
-![](https://kevv.net/wp-content/uploads/2019/06/slider.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/slider.png)
 
 > 滑到解锁
 
@@ -131,7 +131,7 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 [Capy](https://www.capy.me/products/puzzle_captcha/)提供了一个简单的拼图验证码，它要求用户将一个拼图块拖到一个空槽中。
 
-![](https://kevv.net/wp-content/uploads/2019/06/capy.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/capy.png)
 
 > 不费吹灰之力就能完成拼图的所有乐趣
 
@@ -139,13 +139,13 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 [SolveMedia](https://www.solvemedia.com/publishers/captcha-type-in)为各种流行的软件栈提供了验证码和相应的插件，包括vBul公报、WordPress、MediaWiki、Dupal、Joomla等。验证码可以根据用户的威胁分数来缩放其难度。
 
-![](https://kevv.net/wp-content/uploads/2019/06/solvemedia.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/solvemedia.png)
 
 > 他会在你最不经意的时候来的
 
 如果出于某种原因，你觉得有必要从验证码的实现中获利，请不要担心，因为也有适合不久的[资本主义](https://i.imgur.com/TEdBeDa.png)[反乌托邦](https://i.imgur.com/dgGvgKF.png)的版本：
 
-![](https://kevv.net/wp-content/uploads/2019/06/solvemedia_evil.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/solvemedia_evil.png)
 
 > 请饮用确认罐
 
@@ -153,7 +153,7 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 [Geetest](https://www.geetest.com/en/)似乎使用了一些指纹，但其他方面的效果类似于大多数拼图帽。以在宾斯，世界上最大的加密货币交易所之一上使用而闻名。
 
-![](https://kevv.net/wp-content/uploads/2019/06/geetest.png)
+![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/geetest.png)
 
 这个列表几乎没有详尽，许多类似的捕获被排除在其中。如果你是一个软件工程师，你可能认为许多这些捕获可以通过软件解决，虽然是正确的，但却没有得到解决。虽然从理论上来说，验证码应该是一个完美的turing测试，但在实践中，它们只是用来使攻击你的服务更加困难，从而使垃圾邮件不再具有成本效益。即使是完美的捕获，也不能保证阻止一切虐待。尽管如此，除非你运行非常受欢迎的服务，否则你可能会感到惊讶的是，攻击者愿意执行JavaScript或执行OCR以自动攻击你的网站。
 
