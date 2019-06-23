@@ -1,0 +1,450 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Javascript中async和await循环调用 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../other/you-probably-dont-need-recaptcha/ch.html" />
+    
+    
+    <link rel="prev" href="../../other/how-to-convince-your-team-to-adopt-grid/ch.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    杂物空间·翻译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../other/how-to-convince-your-team-to-adopt-grid/ch.html">
+            
+                <a href="../../other/how-to-convince-your-team-to-adopt-grid/ch.html">
+            
+                    
+                    如何说服你的团队采用CSS Grid
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="ch.html">
+            
+                <a href="ch.html">
+            
+                    
+                    Javascript中async和await循环调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../other/you-probably-dont-need-recaptcha/ch.html">
+            
+                <a href="../../other/you-probably-dont-need-recaptcha/ch.html">
+            
+                    
+                    你可能不需要ReCAPTCHA
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Javascript中async和await循环调用</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="javascript&#x4E2D;async&#x548C;await&#x5FAA;&#x73AF;">Javascript&#x4E2D;async&#x548C;await&#x5FAA;&#x73AF;</h2>
+<p>&#x521B;&#x4F5C;&#xFF1A;Zell Liew @2019-05-21</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*p2upvpYKRT0-qtTP61LOYg.gif" alt="JavaScript async and await in loops"></p>
+<p>&#x57FA;&#x672C;&#x7684;<code>async</code>&#x548C;<code>await</code>&#x662F;&#x7B80;&#x5355;&#x7684;&#x3002;&#x5F53;&#x4F60;&#x5C1D;&#x8BD5;&#x4F7F;&#x7528;<code>await</code>&#x5FAA;&#x73AF;&#x65F6;&#xFF0C;&#x4E8B;&#x60C5;&#x4F1A;&#x53D8;&#x5F97;&#x590D;&#x6742;&#x4E00;&#x4E9B;&#x3002;&#x5728;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E2D;&#xFF0C;&#x6211;&#x60F3;&#x5206;&#x4EAB;&#x4E00;&#x4E9B;&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x6253;&#x7B97;&#x5FAA;&#x73AF;&#x4F7F;&#x7528;<code>await</code>&#x7684;&#x8BDD;&#x3002;</p>
+<h3 id="&#x5728;&#x5F00;&#x59CB;&#x4E4B;&#x524D;"><strong>&#x5728;&#x5F00;&#x59CB;&#x4E4B;&#x524D;</strong></h3>
+<p>&#x6211;&#x5047;&#x8BBE;&#x4F60;&#x5DF2;&#x7ECF;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x4F7F;&#x7528;<code>async</code>&#x548C;<code>await</code>&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x8BF7;&#x9605;&#x8BFB;<a href="https://zellwk.com/blog/async-await" target="_blank">&#x4E0A;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;</a>&#x5728;&#x7EE7;&#x7EED;&#x4E4B;&#x524D;&#x5148;&#x81EA;&#x5B66;&#x719F;&#x6089;&#x4E00;&#x4E0B;&#x3002;</p>
+<h3 id="&#x51C6;&#x5907;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;"><strong>&#x51C6;&#x5907;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;</strong></h3>
+<p>&#x5728;&#x672C;&#x6587;&#x4E2D;&#xFF0C;&#x5047;&#x8BBE;&#x60A8;&#x5E0C;&#x671B;&#x4ECE;&#x6C34;&#x679C;&#x7BEE;&#x4E2D;&#x83B7;&#x53D6;&#x6C34;&#x679C;&#x7684;&#x6570;&#x91CF;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> fruitBasket = { apple: <span class="hljs-number">27</span>, grape: <span class="hljs-number">0</span>, pear: <span class="hljs-number">14</span>};
+</code></pre>
+<p>&#x4F60;&#x60F3;&#x4ECE;&#x6C34;&#x679C;&#x7BEE;&#x4E2D;&#x5F97;&#x5230;&#x6BCF;&#x4E2A;&#x6C34;&#x679C;&#x7684;&#x6570;&#x91CF;&#x3002;&#x8981;&#x83B7;&#x5F97;&#x6C34;&#x679C;&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>getNumFruit</code>&#x51FD;&#x6570;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> getNumFruit = fruit =&gt; { <span class="hljs-keyword">return</span> fruitBasket[fruit];};
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> numApples = getNumFruit(&#x201C;apple&#x201D;);<span class="hljs-built_in">console</span>.log(numApples); <span class="hljs-comment">// 27</span>
+</code></pre>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x5047;&#x8BBE;&#x6C34;&#x679C;&#x7BEE;&#x751F;&#x6D3B;&#x5728;&#x8FDC;&#x7A0B;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x3002;&#x8BBF;&#x95EE;&#x5B83;&#x9700;&#x8981;&#x4E00;&#x79D2;&#x949F;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;&#x8D85;&#x65F6;&#x6765;&#x6A21;&#x62DF;&#x8FD9;&#x4E2A;&#x4E00;&#x79D2;&#x7684;&#x5EF6;&#x8FDF;&#x3002;(&#x5982;&#x679C;&#x7406;&#x89E3;&#x8D85;&#x65F6;&#x4EE3;&#x7801;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x8BF7;&#x53C2;&#x9605;<a href="https://zellwk.com/blog/async-await" target="_blank">&#x524D;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;</a>)&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> sleep = ms =&gt; { <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(resolve =&gt; setTimeout(resolve, ms));};
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> getNumFruit = fruit =&gt; { <span class="hljs-keyword">return</span> sleep(<span class="hljs-number">1000</span>).then(v =&gt; fruitBasket[fruit]);};
+</code></pre>
+<pre><code class="lang-javascript">getNumFruit(&#x201C;apple&#x201D;).then(num =&gt; <span class="hljs-built_in">console</span>.log(num)); <span class="hljs-comment">// 27</span>
+</code></pre>
+<p>&#x6700;&#x540E;&#xFF0C;&#x5047;&#x8BBE;&#x60A8;&#x5E0C;&#x671B;&#x4F7F;&#x7528;<code>await</code>&#x548C;<code>getNumFruit</code>&#x6765;&#x83B7;&#x53D6;&#x5F02;&#x6B65;&#x51FD;&#x6570;&#x4E2D;&#x6BCF;&#x4E2A;&#x6C34;&#x679C;&#x7684;&#x6570;&#x91CF;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> control = <span class="hljs-keyword">async</span> _ =&gt; { <span class="hljs-built_in">console</span>.log(&#x201C;Start&#x201D;);
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> numApples = <span class="hljs-keyword">await</span> getNumFruit(&#x201C;apple&#x201D;); <span class="hljs-built_in">console</span>.log(numApples);
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> numGrapes = <span class="hljs-keyword">await</span> getNumFruit(&#x201C;grape&#x201D;); <span class="hljs-built_in">console</span>.log(numGrapes);
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> numPears = <span class="hljs-keyword">await</span> getNumFruit(&#x201C;pear&#x201D;); <span class="hljs-built_in">console</span>.log(numPears);
+</code></pre>
+<pre><code class="lang-javascript"><span class="hljs-built_in">console</span>.log(&#x201C;End&#x201D;);
+</code></pre>
+<p>&#x6709;&#x4E86;&#x8FD9;&#x4E2A;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5F00;&#x59CB;&#x7814;&#x7A76;<code>await</code>&#x5FAA;&#x73AF;&#x4E86;&#x3002;</p>
+<pre><code>### **Await in a for loop**
+
+Let&apos;s say we have an array of fruits we want to get from the fruit basket.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const fruitsToGet = [&#x201C;apple&#x201D;, &#x201C;grape&#x201D;, &#x201C;pear&#x201D;];`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+We are going to loop through this array.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const forLoop = async _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`for (let index = 0; index &amp;lt; fruitsToGet.length; index++) { // Get num of each fruit }`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+In the for-loop, we will use `getNumFruit` to get the number of each fruit. We&apos;ll also log the number into the console.
+
+Since `getNumFruit` returns a promise, we can `await` the resolved value before logging it.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const forLoop = async _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`for (let index = 0; index &amp;lt; fruitsToGet.length; index++) { const fruit = fruitsToGet[index]; const numFruit = await getNumFruit(fruit); console.log(numFruit); }`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+When you use `await`, you expect JavaScript to pause execution until the awaited promise gets resolved. This means `await`s in a for-loop should get executed in series.
+
+The result is what you&apos;d expect.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;;&#x201C;Apple: 27&#x201D;;&#x201C;Grape: 0&#x201D;;&#x201C;Pear: 14&#x201D;;&#x201C;End&#x201D;;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: image--&gt;&lt;figure class=&quot;kg-card kg-image-card kg-card-hascaption&quot;&gt;![](https://cdn-media-1.freecodecamp.org/images/sU0OzGuNuH5BwMoYmNcmNLfQzcexW0m7e08K)&lt;figcaption&gt;Console shows &#x2018;Start&#x2019;. One second later, it logs 27. Another second later, it logs 0. One more second later, it logs 14, and &#x2018;End&#x2019;&lt;/figcaption&gt;&lt;/figure&gt;&lt;!--kg-card-end: image--&gt;
+
+This behavior works with most loops (like `while` and `for-of` loops)...
+
+But it won&apos;t work with loops that require a callback. Examples of such loops that require a fallback include `forEach`, `map`, `filter`, and `reduce`. We&apos;ll look at how `await` affects `forEach`, `map`, and `filter` in the next few sections.
+
+### **Await in a forEach loop**
+
+We&apos;ll do the same thing as we did in the for-loop example. First, let&apos;s loop through the array of fruits.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const forEachLoop = _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`fruitsToGet.forEach(fruit =&amp;gt; { // Send a promise for each fruit });`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+Next, we&apos;ll try to get the number of fruits with `getNumFruit`. (Notice the `async` keyword in the callback function. We need this `async` keyword because `await` is in the callback function).
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const forEachLoop = _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`fruitsToGet.forEach(async fruit =&amp;gt; { const numFruit = await getNumFruit(fruit); console.log(numFruit); });`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+You might expect the console to look like this:
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;;&#x201C;27&#x201D;;&#x201C;0&#x201D;;&#x201C;14&#x201D;;&#x201C;End&#x201D;;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+But the actual result is different. JavaScript proceeds to call `console.log(&apos;End&apos;) `before the promises in the forEach loop gets resolved.
+
+The console logs in this order:
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x2018;Start&#x2019;&#x2018;End&#x2019;&#x2018;27&#x2019;&#x2018;0&#x2019;&#x2018;14&#x2019;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: image--&gt;&lt;figure class=&quot;kg-card kg-image-card kg-card-hascaption&quot;&gt;![](https://cdn-media-1.freecodecamp.org/images/DwUgo9TAK8PXNLIAv3-27UZMSrEkfNx778hS)&lt;figcaption&gt;Console logs &#x2018;Start&#x2019; and &#x2018;End&#x2019; immediately. One second later, it logs 27, 0, and 14.&lt;/figcaption&gt;&lt;/figure&gt;&lt;!--kg-card-end: image--&gt;
+
+JavaScript does this because `forEach` is not promise-aware. It cannot support `async` and `await`. You __cannot__ use `await` in `forEach`.
+
+### **Await with map**
+
+If you use `await` in a `map`, `map` will always return an array of promise. This is because asynchronous functions always return promises.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const mapLoop = async _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const numFruits = await fruitsToGet.map(async fruit =&amp;gt; { const numFruit = await getNumFruit(fruit); return numFruit; });`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(numFruits);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;;&#x201C;[Promise, Promise, Promise]&#x201D;;&#x201C;End&#x201D;;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: image--&gt;&lt;figure class=&quot;kg-card kg-image-card kg-card-hascaption&quot;&gt;![](https://cdn-media-1.freecodecamp.org/images/JD3o7BUxILoFP-hVwv5920JtHJPB8l6IrMNs)&lt;figcaption&gt;Console logs &#x2018;`Start`&#x2019;, &#x2018;[Promise, Promise, Promise]&#x2019;, and &#x2018;End&#x2019; immediately&lt;/figcaption&gt;&lt;/figure&gt;&lt;!--kg-card-end: image--&gt;
+
+Since `map` always return promises (if you use `await`), you have to wait for the array of promises to get resolved. You can do this with` await Promise.all(arrayOfPromises)`.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const mapLoop = async _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const promises = fruitsToGet.map(async fruit =&amp;gt; { const numFruit = await getNumFruit(fruit); return numFruit; });`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const numFruits = await Promise.all(promises); console.log(numFruits);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+Here&apos;s what you get:
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;;&#x201C;[27, 0, 14]&#x201D;;&#x201C;End&#x201D;;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: image--&gt;&lt;figure class=&quot;kg-card kg-image-card kg-card-hascaption&quot;&gt;![](https://cdn-media-1.freecodecamp.org/images/Clz579WsPZ0Tv4iiA5rN1960VP0xx4x66dAz)&lt;figcaption&gt;Console logs &#x2018;Start&#x2019;. One second later, it logs &#x2018;[27, 0, 14] and &#x2018;End&#x2019;&lt;/figcaption&gt;&lt;/figure&gt;&lt;!--kg-card-end: image--&gt;
+
+You can manipulate the value you return in your promises if you wish to. The resolved values will be the values you return.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const mapLoop = async _ =&amp;gt; { // &#x2026; const promises = fruitsToGet.map(async fruit =&amp;gt; { const numFruit = await getNumFruit(fruit); // Adds onn fruits before returning return numFruit + 100; }); // &#x2026;};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;;&#x201C;[127, 100, 114]&#x201D;;&#x201C;End&#x201D;;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+### **Await with filter**
+
+When you use `filter`, you want to filter an array with a specific result. Let&apos;s say you want to create an array with more than 20 fruits.
+
+If you use `filter` normally (without await), you&apos;ll use it like this:
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`// Filter if there&#x2019;s no awaitconst filterLoop = _ =&amp;gt; { console.log(&#x2018;Start&#x2019;)`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const moreThan20 = await fruitsToGet.filter(fruit =&amp;gt; { const numFruit = fruitBasket[fruit] return numFruit &amp;gt; 20 })`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(moreThan20) console.log(&#x2018;End&#x2019;)}`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+You would expect `moreThan20` to contain only apples because there are 27 apples, but there are 0 grapes and 14 pears.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;[&#x201C;apple&#x201D;];(&#x201C;End&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+`await` in `filter` doesn&apos;t work the same way. In fact, it doesn&apos;t work at all. You get the unfiltered array back...
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const filterLoop = _ =&amp;gt; { console.log(&#x2018;Start&#x2019;)`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const moreThan20 = await fruitsToGet.filter(async fruit =&amp;gt; { const numFruit = getNumFruit(fruit) return numFruit &amp;gt; 20 })`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(moreThan20) console.log(&#x2018;End&#x2019;)}`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;[(&#x201C;apple&#x201D;, &#x201C;grape&#x201D;, &#x201C;pear&#x201D;)];(&#x201C;End&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: image--&gt;&lt;figure class=&quot;kg-card kg-image-card kg-card-hascaption&quot;&gt;![](https://cdn-media-1.freecodecamp.org/images/xI8y6n2kvda8pz9i7f5ffVu92gs7ISj7My9M)&lt;figcaption&gt;Console loggs &#x2018;Start&#x2019;, &#x2018;[&#x2018;apple&#x2019;, &#x2018;grape&#x2019;, &#x2018;pear&#x2019;]&#x2019;, and &#x2018;End&#x2019; immediately&lt;/figcaption&gt;&lt;/figure&gt;&lt;!--kg-card-end: image--&gt;
+
+Here&apos;s why it happens.
+
+When you use `await` in a `filter` callback, the callback always a promise. Since promises are always truthy, everything item in the array passes the filter. Writing `await` in a `filter` is like writing this code:
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`// Everything passes the filter&#x2026;const filtered = array.filter(true);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+There are three steps to use `await` and `filter` properly:
+
+1. Use `map` to return an array promises
+
+2. `await` the array of promises
+
+3. `filter` the resolved values
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const filterLoop = async _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const promises = await fruitsToGet.map(fruit =&amp;gt; getNumFruit(fruit)); const numFruits = await Promise.all(promises);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const moreThan20 = fruitsToGet.filter((fruit, index) =&amp;gt; { const numFruit = numFruits[index]; return numFruit &amp;gt; 20; });`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(moreThan20); console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`Start[&#x201C;apple&#x201D;];End;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: image--&gt;&lt;figure class=&quot;kg-card kg-image-card kg-card-hascaption&quot;&gt;![](https://cdn-media-1.freecodecamp.org/images/KbvkmmX4K77pSq29OVj8jhK0KNdyCYQsH1Sn)&lt;figcaption&gt;Console shows &#x2018;Start&#x2019;. One second later, console logs &#x2018;[&#x2018;apple&#x2019;]&#x2019; and &#x2018;End&#x2019;&lt;/figcaption&gt;&lt;/figure&gt;&lt;!--kg-card-end: image--&gt;
+
+### **Await with reduce**
+
+For this case, let&apos;s say you want to find out the total number of fruits in the fruitBastet. Normally, you can use `reduce` to loop through an array and sum the number up.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`// Reduce if there&#x2019;s no awaitconst reduceLoop = _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const sum = fruitsToGet.reduce((sum, fruit) =&amp;gt; { const numFruit = fruitBasket[fruit]; return sum + numFruit; }, 0);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(sum); console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;
+
+You&apos;ll get a total of 41 fruits. (27 + 0 + 14 = 41).
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;;&#x201C;41&#x201D;;&#x201C;End&#x201D;;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: image--&gt;&lt;figure class=&quot;kg-card kg-image-card kg-card-hascaption&quot;&gt;![](https://cdn-media-1.freecodecamp.org/images/1cHrIKZU2x4bt0Cl6NmnrNA9eYed0-3n4SIq)&lt;figcaption&gt;Console logs &#x2018;Start&#x2019;, &#x2018;41&#x2019;, and &#x2018;End&#x2019; immediately&lt;/figcaption&gt;&lt;/figure&gt;&lt;!--kg-card-end: image--&gt;
+
+When you use `await` with reduce, the results get extremely messy.
+&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`// Reduce if we await getNumFruitconst reduceLoop = async _ =&amp;gt; { console.log(&#x201C;Start&#x201D;);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`const sum = await fruitsToGet.reduce(async (sum, fruit) =&amp;gt; { const numFruit = await getNumFruit(fruit); return sum + numFruit; }, 0);`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`console.log(sum); console.log(&#x201C;End&#x201D;);};`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: code--&gt;&lt;pre&gt;`&#x201C;Start&#x201D;;&#x201C;[object Promise]14&#x201D;;&#x201C;End&#x201D;;`&lt;/pre&gt;&lt;!--kg-card-end: code--&gt;&lt;!--kg-card-begin: image--&gt;&lt;figure class=&quot;kg-card kg-image-card kg-card-hascaption&quot;&gt;![](https://cdn-media-1.freecodecamp.org/images/vziO1ieaUzFZNE1p3FlaOBJLEQtAL21CYDKw)&lt;figcaption&gt;Console logs &#x2018;Start&#x2019;. One second later, it logs &#x2018;[object Promise]14&#x2019; and &#x2018;End&#x2019;&lt;/figcaption&gt;&lt;/figure&gt;&lt;!--kg-card-end: image--&gt;
+
+What?! `[object Promise]14`?!
+
+Dissecting this is interesting.
+</code></pre><ul>
+<li>In the first iteration, <code>sum</code> is <code>0</code>. <code>numFruit</code> is 27 (the resolved value from <code>getNumFruit(&#x2018;apple&#x2019;)</code>). <code>0 + 27</code>is 27.</li>
+<li>In the second iteration, <code>sum</code> is a promise. (Why? Because asynchronous functions always return promises!) <code>numFruit</code> is 0. A promise cannot be added to an object normally, so the JavaScript converts it to <code>[object Promise]</code> string. <code>[object Promise] + 0</code>is <code>[object Promise]0</code></li>
+<li><p>In the third iteration, <code>sum</code> is also a promise. <code>numFruit</code> is <code>14</code>. <code>[object Promise] + 14</code> is <code>[object Promise]14</code>.</p>
+<p>Mystery solved!</p>
+<p>This means, you can use <code>await</code> in a <code>reduce</code> callback, but you have to remember to <code>await</code> the accumulator first!</p>
+<!--kg-card-begin: code--><pre>`const reduceLoop = async _ =&gt; { console.log(&#x201C;Start&#x201D;);`</pre><!--kg-card-end: code--><!--kg-card-begin: code--><pre>`const sum = await fruitsToGet.reduce(async (promisedSum, fruit) =&gt; { const sum = await promisedSum; const numFruit = await getNumFruit(fruit); return sum + numFruit; }, 0);`</pre><!--kg-card-end: code--><!--kg-card-begin: code--><pre>`console.log(sum); console.log(&#x201C;End&#x201D;);};`</pre><!--kg-card-end: code--><!--kg-card-begin: code--><pre>`&#x201C;Start&#x201D;;&#x201C;41&#x201D;;&#x201C;End&#x201D;;`</pre><!--kg-card-end: code--><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption">![](https://cdn-media-1.freecodecamp.org/images/a3ZEbODMdVmob-31Qh0qfFugbLJoNZudoPwM)<figcaption>Console logs &#x2018;Start&#x2019;. Three seconds later, it logs &#x2018;41&#x2019; and &#x2018;End&#x2019;</figcaption></figure><!--kg-card-end: image-->
+<p>But... as you can see from the gif, it takes pretty long to <code>await</code> everything. This happens because <code>reduceLoop</code> needs to wait for the <code>promisedSum</code> to be completed for each iteration.</p>
+<p>There&apos;s a way to speed up the reduce loop. (I found out about this thanks to <a href="https://twitter.com/timkevinoxley" target="_blank">Tim Oxley</a>. If you <code>await getNumFruits(</code>) first before <code>await promisedSum</code>, the <code>reduceLoop</code> takes only one second to complete:</p>
+<!--kg-card-begin: code--><pre>`const reduceLoop = async _ =&gt; { console.log(&#x201C;Start&#x201D;);`</pre><!--kg-card-end: code--><!--kg-card-begin: code--><pre>`const sum = await fruitsToGet.reduce(async (promisedSum, fruit) =&gt; { // Heavy-lifting comes first. // This triggers all three getNumFruit promises before waiting for the next iteration of the loop. const numFruit = await getNumFruit(fruit); const sum = await promisedSum; return sum + numFruit; }, 0);`</pre><!--kg-card-end: code--><!--kg-card-begin: code--><pre>`console.log(sum); console.log(&#x201C;End&#x201D;);};`</pre><!--kg-card-end: code--><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption">![](https://cdn-media-1.freecodecamp.org/images/Vm9olChpCbbEgBmub6OuOS2r0QD5SwwW9y9i)<figcaption>Console logs &#x2018;Start&#x2019;. One second later, it logs &#x2018;41&#x2019; and &#x2018;End&#x2019;</figcaption></figure><!--kg-card-end: image-->
+<p>This works because <code>reduce</code> can fire all three <code>getNumFruit</code> promises before waiting for the next iteration of the loop. However, this method is slightly confusing since you have to be careful of the order you <code>await</code> things.</p>
+<p>The simplest (and most efficient way) to use <code>await</code> in reduce is to:</p>
+<ol>
+<li><p>Use <code>map</code> to return an array promises</p>
+</li>
+<li><p><code>await</code> the array of promises</p>
+</li>
+<li><p><code>reduce</code> the resolved values</p>
+<!--kg-card-begin: code--><pre>`const reduceLoop = async _ =&gt; { console.log(&#x201C;Start&#x201D;);`</pre><!--kg-card-end: code--><!--kg-card-begin: code--><pre>`const promises = fruitsToGet.map(getNumFruit); const numFruits = await Promise.all(promises); const sum = numFruits.reduce((sum, fruit) =&gt; sum + fruit);`</pre><!--kg-card-end: code--><!--kg-card-begin: code--><pre>`console.log(sum); console.log(&#x201C;End&#x201D;);};
+<!--kg-card-end: code-->
+</pre></li>
+</ol>
+</li>
+</ul>
+<p>This version is simple to read and understand, and takes one second to calculate the total number of fruits.
+<!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption">![](https://cdn-media-1.freecodecamp.org/images/rAN2FodB3Ff8FmQvMLy4R3mii1Kt41jRszkE)<figcaption>Console logs &#x2018;Start&#x2019;. One second later, it logs &#x2018;41&#x2019; and &#x2018;End&#x2019;</figcaption></figure><!--kg-card-end: image--></p>
+<h3 id="key-takeaways"><strong>Key Takeaways</strong></h3>
+<ol>
+<li><p>If you want to execute <code>await</code> calls in series, use a <code>for-loop</code> (or any loop without a callback).</p>
+</li>
+<li><p>Don&apos;t ever use <code>await</code> with <code>forEach</code>. Use a <code>for-loop</code> (or any loop without a callback) instead.</p>
+</li>
+<li><p>Don&apos;t <code>await</code> inside <code>filter</code> and <code>reduce</code>. Always <code>await</code> an array of promises with <code>map</code>, then <code>filter</code> or <code>reduce</code> accordingly.</p>
+</li>
+</ol>
+<p>This article was originally posted on <a href="https://zellwk.com/blog/async-await-in-loops/" target="_blank"><em>my blog</em></a><em>. </em>
+Sign up for my<a href="https://zellwk.com/" target="_blank"> newsletter</a> if you want more articles to help you become a better frontend developer.</p>
+<pre><code>                &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;footer class=&quot;post-full-footer&quot;&gt;
+</code></pre><p><section class="author-card">
+        <img src="../../../../www.gravatar.com/avatar/fcda43852608626fe46d7fd43145766e?s=250&amp;d=mm&amp;r=x" alt="freeCodeCamp.org">
+    <section class="author-card-content"></section></section></p>
+<h4 id="freecodecamporg"><a href="../../news/author/freecodecamp">freeCodeCamp.org</a></h4>
+<p>Read <a href="../../news/author/freecodecamp">more posts</a> by this author.</p>
+<pre><code>&lt;/section&gt;
+</code></pre><p>&lt;/section&gt;</p>
+<div class="post-full-footer-right">
+    [Read More](/news/author/freecodecamp/)
+</div>
+
+<pre><code>        &lt;/footer&gt;
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../../other/how-to-convince-your-team-to-adopt-grid/ch.html" class="navigation navigation-prev " aria-label="Previous page: 如何说服你的团队采用CSS Grid">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../other/you-probably-dont-need-recaptcha/ch.html" class="navigation navigation-next " aria-label="Next page: 你可能不需要ReCAPTCHA">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Javascript中async和await循环调用","level":"1.3","depth":1,"next":{"title":"你可能不需要ReCAPTCHA","level":"1.4","depth":1,"path":"other/you-probably-dont-need-recaptcha/ch.md","ref":"other/you-probably-dont-need-recaptcha/ch.md","articles":[]},"previous":{"title":"如何说服你的团队采用CSS Grid","level":"1.2","depth":1,"path":"other/how-to-convince-your-team-to-adopt-grid/ch.md","ref":"other/how-to-convince-your-team-to-adopt-grid/ch.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"js/javascript-async-and-await-in-loops/ch.md","mtime":"2019-05-27T13:26:38.182Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-23T09:56:56.620Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
