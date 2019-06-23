@@ -1,8 +1,9 @@
 ## [你可能不需要ReCAPTCHA](https://www.yuque.com/ysfe/ykx/recaptcha)
 
-> <b>[Kevin Davis](https://twitter.com/Nearcyan)@2019-06-11  [原文链接](https://kevv.net/you-probably-dont-need-recaptcha/)</b> 
+<b>[Kevin Davis](https://twitter.com/Nearcyan)@2019-06-11  [原文链接](https://kevv.net/you-probably-dont-need-recaptcha/)</b> 
 >
-> *翻译&校验：[freedom](https://github.com/yylifen)*
+> *翻译&校验：[freedom](https://github.com/yylifen)* 
+> 
 
 当面对阻止垃圾邮件和自动的恶意通信损害其服务的需求时，Google的[reCAPTCHA](https://en.wikipedia.org/wiki/ReCAPTCHA)常常是许多网站管理员使用的首选工具。在这篇文章中，我通过几个原因解释了为什么reCAPTCHA通常不是用于这个目的最佳解决方案，因为它通常是不必要的，还会给用户带来一些不便，并且让用户无法选择跳过他们的密集跟踪和指纹识别。针对ReCAPTCHA的各种威胁模型我提出了几种替代解决方案，以及一般使用验证码的最佳做法。
 
