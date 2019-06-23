@@ -28,7 +28,7 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 如果用户试图通过使用妨碍谷歌服务和跟踪的软件(如VPN、TBB和许多反跟踪浏览器加载项和修改)来“选择”谷歌的服务和跟踪，那么reCAPTCHA就会变得更加困难。为了演示“非常无聊”的含义，下面是我使用TBB解决一个reCAPTCHA的实时记录：
 
 <!-- ![](https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/recaptcha-1.webm) -->
-<video controls="" src="https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/recaptcha-1.mp4"></video>
+<video width="90%" controls="" src="https://yylifen.github.io/sundries-trans/other/you-probably-dont-need-recaptcha/images/recaptcha-1.mp4"></video>
 
 我很幸运，只需要完成两项挑战。有时有十个甚至更多。看了上面的视频，你可能会想：“我知道网络很慢，但我不知道它有那么慢！”你注意到这一差异是正确的。如果打开WebDeveloper控制台，我们可以看到，对于新的验证码映像的HTTP请求只需要几百毫秒。尽管如此，谷歌混淆的JavaScript故意每次将新图像的出现推迟几秒钟，我确信这与机器人被迫等待时放弃的事实有关。这不是一个好的方式来对待那些不想做无报酬劳动的用户，并且被谷歌进行指纹识别。请记住，上面的视频展示了reCAPTCHA用户体验(一些[用户脚本](https://greasyfork.org/en/scripts/31088-morecaptcha/code)可能改进的)最坏的情况之一，并且普通用户的体验要快得多，只要他们不试图阻止Google的任何跟踪，并且不会犯很多错误。
 
