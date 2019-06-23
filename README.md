@@ -4,9 +4,9 @@
 
 * 【2019-03-24】[如何说服你的团队采用CSS Grid](other/how-to-convince-your-team-to-adopt-grid/ch.md)
 
-* 【2019-05-2?】[Javascript中async和await循环调用](js/javascript-async-and-await-in-loops/ch.md)(翻译中...)
+<!-- * 【2019-05-2?】[Javascript中async和await循环调用](js/javascript-async-and-await-in-loops/ch.md)(翻译中...) -->
 
-* 【2019-06-16】[你可能不需要ReCAPTCHA](other/you-probably-dont-need-recaptcha/ch.md)(校验中...)
+* 【2019-06-16】[你可能不需要ReCAPTCHA](other/you-probably-dont-need-recaptcha/ch.md)
 
 
 
