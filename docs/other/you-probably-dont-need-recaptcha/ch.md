@@ -197,4 +197,4 @@ reCAPTCHA是谷歌为任何网站管理员在自己的服务范围内提供的�
 
 如果你喜欢这篇文章或者指出不足了，可以在[Twitter](https://twitter.com/Nearcyan)上和我打个招呼。
 
-> 这篇文章发布在[软件](https://kevv.net/category/software/)和[WebDev](https://kevv.net/category/webdev/)，标签有：[CAPTCHA](https://kevv.net/tag/captcha/)、[Google](https://kevv.net/tag/google/)、[reCAPTCHA](https://kevv.net/tag/recaptcha/)、[安全性](https://kevv.net/tag/security/)、[垃圾邮件](https://kevv.net/tag/spam/)、[UI](https://kevv.net/tag/ui/)和[UX](https://kevv.net/tag/ux/)。
+> 这篇文章发布在[software](https://kevv.net/category/software/)和[WebDev](https://kevv.net/category/webdev/)，标签有：[CAPTCHA](https://kevv.net/tag/captcha/)、[Google](https://kevv.net/tag/google/)、[reCAPTCHA](https://kevv.net/tag/recaptcha/)、[安全性](https://kevv.net/tag/security/)、[垃圾邮件](https://kevv.net/tag/spam/)、[UI](https://kevv.net/tag/ui/)和[UX](https://kevv.net/tag/ux/)。
