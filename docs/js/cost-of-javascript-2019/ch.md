@@ -15,7 +15,7 @@ Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 发布于2019年6月
 
 如果浏览器的主线程忙于执行JavaScript脚本时可能会延迟响应用户交互，因此优化脚本执行时间和网络瓶颈可以改善用户体验。
 
-### [高级实用指南]
+### 高级实用指南
 
 这对Web开发人员意味着什么？解析和编译成本**不再**像我们曾经想象的**那么慢**。关于优化JavaScript包的三个重点是：
 
@@ -100,7 +100,7 @@ V8通过在Worker线程上解析和编译，将主线程上的解析和编译工
 
 我们现在正在试验在预加载上开始解析，而主线程反弹是一个预先阻止这一点的工具。
 
-Leszek Swirski的眨眼演示更详细：
+Leszek Swirski的演示更详细：
 
 <iframe width="764" height="455" src="https://www.youtube.com/embed/D1UJgiG4_NI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <!-- [Youtube视频地址：https://www.youtube.com/embed/D1UJgiG4_NI](https://www.youtube.com/embed/D1UJgiG4_NI) -->
