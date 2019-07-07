@@ -11,15 +11,15 @@ Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 发布于2019年6月
 
 *Addy Osmani在2019年PerfMatters大会上的现场演讲《[JavaScript性能开销](https://www.youtube.com/watch?v=X9eRLElSW1c)》.*
 
-在过去几年中，JavaScript性能开销的一个重大变化是浏览器解析和编译脚本的速度有所提高。 在2019年，处理脚本现在的主要开销在于下载和CPU执行时间。
+在过去几年中，JavaScript性能开销的一个重大变化是浏览器解析和编译脚本的速度有所提高。**在2019年，处理脚本现在的主要开销在于下载和CPU执行时间。**
 
 如果浏览器的主线程忙于执行JavaScript脚本时可能会延迟响应用户交互，因此优化脚本执行时间和网络瓶颈可以改善用户体验。
 
 ### [高级实用指南]
 
-这对Web开发人员意味着什么？解析和编译成本*不再*像我们曾经想象的*那么慢*。关于优化JavaScript包的三个重点是：
+这对Web开发人员意味着什么？解析和编译成本**不再**像我们曾经想象的**那么慢**。关于优化JavaScript包的三个重点是：
 
-* *提高下载速度*
+* **提高下载速度**
     
     + 确保JavaScript包的尽可能小，特别是对于移动设备。小包可以提高下载速度，降低内存使用率并降低CPU成本。
 
@@ -27,10 +27,10 @@ Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 发布于2019年6月
 
     + 在移动端尽可能较少包的大小，这主要是出于对网络带宽的考虑，同时也有利于降低内存使用率。
 
-* *缩短执行时间*
-    + 避免主线程一直忙于执行长时间下载、影响页面交互响应速度的任务。下载后，脚本执行时间是现在主要的性能成本之一。
+* **缩短执行时间**
+    + 避免主线程一直忙于执行长时间下载、影响页面交互响应速度的[长任务](https://w3c.github.io/longtasks/)。下载后，脚本执行时间是现在主要的性能成本之一。
 
-* *避免使用大型内联脚本*（因为它们仍然在主线程上进行了解析和编译）。 一个好的经验法则是：如果脚本超过1kB，请避免内联（因为1kB是[代码缓存](https://v8.dev/blog/code-caching-for-devs)为外部脚本启动时）。
+* **避免使用大型内联脚本**（因为它们仍然在主线程上进行了解析和编译）。 一个好的经验法则是：如果脚本超过1kB，请避免内联（因为1kB是[代码缓存](https://v8.dev/blog/code-caching-for-devs)为外部脚本启动时）。
 
 ### 为什么重视JavaScript脚本的下载和执行时间？
 
@@ -109,7 +109,7 @@ Leszek Swirski的眨眼演示更详细：
 
 ### 这些变化你在DevTools中如何看到相关内容？
 
-除了上面的内容之外，DevTools中还有一个问题，它以一种暗示它正在使用CPU(完整块)的方式呈现了整个解析器任务。但是，每当需要数据(需要遍历主线程)时，解析器就会阻塞。由于我们从单一的流线程转移到流任务，这个问题变得非常明显。下面是你在Chrome 69中看到的内容：
+除了上面的内容之外，[DevTools中还有一个问题](https://bugs.chromium.org/p/chromium/issues/detail?id=939275)，它以一种暗示它正在使用CPU(完整块)的方式呈现了整个解析器任务。但是，每当需要数据(需要遍历主线程)时，解析器就会阻塞。由于我们从单一的流线程转移到流任务，这个问题变得非常明显。下面是你在Chrome 69中看到的内容：
 
 ![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/devtools-69.png)
 
@@ -123,7 +123,7 @@ Chrome 76描绘了一幅截然不同的画面：
 
 *在Chrome 76中，解析被分解成多个较小的流任务。*
 
-一般来说，DevTools性能面板非常适合从宏观上分析页面上发生的事情。对于特定于V8的详细指标，如JavaScript解析和编译时间，我们建议使用Chrome跟踪和运行时调用统计(RCS)。在RCS结果中，`Parse-Background`和`Compile-Background`告诉你在主线程上解析和编译JavaScript花费了多少时间，而`Parse`和`Compile`则捕获主线程度量。
+一般来说，DevTools性能面板非常适合从宏观上分析页面上发生的事情。对于特定于V8的详细指标，如JavaScript解析和编译时间，我们建议[使用Chrome跟踪和运行时调用统计(RCS)](https://v8.dev/docs/rcs)。在RCS结果中，`Parse-Background`和`Compile-Background`告诉你在主线程上解析和编译JavaScript花费了多少时间，而`Parse`和`Compile`则捕获主线程度量。
 
 ![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/rcs.png)
 
@@ -182,6 +182,9 @@ V8的(字节)代码缓存优化可能会有所帮助。当第一次请求脚本�
 ![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/code-caching.png)
 
 *V8中代码缓存工作方式的可视化*
+
+第三次，Chrome从缓存中获取文件和文件的元数据，并将两者都交给V8。V8取消序列化元数据并跳过编译。如果前两次访问发生在72小时内，则代码缓存启动。如果服务工作者用于缓存脚本，Chrome还具有热切的代码缓存。在[Web开发人员的代码缓存](https://v8.dev/blog/code-caching-for-devs)中，您可以阅读更多关于代码缓存的信息。
+
 
 ### 结束语
 
