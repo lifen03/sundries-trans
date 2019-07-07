@@ -8,5 +8,7 @@
 
 * 【2019-06-16】[你可能不需要ReCAPTCHA](other/you-probably-dont-need-recaptcha/ch.md)
 
+* 【2019-07-07】[JavaScript性能优化之2019](js/cost-of-javascript-2019/ch.md)
+
 
 
