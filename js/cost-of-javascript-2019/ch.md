@@ -1,4 +1,4 @@
-## JavaScript性能开销之2019
+## [JavaScript性能开销之2019](https://www.yuque.com/ysfe/ykx/js)
 
 Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 发布于2019年6月25日。[原文地址](https://v8.dev/blog/cost-of-javascript-2019)
 
@@ -7,6 +7,7 @@ Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 发布于2019年6月
 > <b>注：</b>如果你喜欢看演示文稿而不是阅读文章，那就享受下面的视频吧！如果没有，跳过视频并继续阅读。
 
 <iframe width="713" height="426" src="https://www.youtube.com/embed/X9eRLElSW1c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- [Youtube视频地址：https://www.youtube.com/embed/X9eRLElSW1c](https://www.youtube.com/embed/X9eRLElSW1c) -->
 
 *Addy Osmani在2019年PerfMatters大会上的现场演讲《[JavaScript性能开销](https://www.youtube.com/watch?v=X9eRLElSW1c)》.*
 
@@ -39,13 +40,13 @@ Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 发布于2019年6月
 
 事实上，一个页面在Chrome这样的浏览器中加载的总时间，有30%的时间可能是花在JavaScript执行上。下面是一个页面加载时工作负载相当典型的站点(Reddit.com)，它运行在高端桌面计算机上：
 
-![](https://v8.dev/_img/cost-of-javascript-2019/reddit-js-processing.svg)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/reddit-js-processing.svg)
 
 *在V8中JavaScript处理时间占了页面加载期间所花费的时间的10-30%。*
 
 在移动设备上，(Pixel3)Reddit的JavaScript执行时间，与高端设备相比，在中端设备(MotoG4)需要3–4倍，在低端设备（售价低于100美元的Alcatel 1X）需要6倍：
 
-![](https://v8.dev/_img/cost-of-javascript-2019/reddit-js-processing-devices.svg)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/reddit-js-processing-devices.svg)
 
 *Reddit的JavaScript执行时间在几个不同的设备类(低端、中端和高端)中的性能开销*
 
@@ -53,7 +54,7 @@ Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 发布于2019年6月
 
 当你试图优化JavaScript执行时间时，要关注可能长期独占UI线程的[长任务](https://web.dev/long-tasks-devtools/)。即使页面看上去已经准备好了，这些长任务可能会阻止关键任务的执行。把它们分解成更小的任务。通过拆分代码并对加载的顺序进行优先级排序，这样就可以使页面具有较低的输入延迟，更快地进行交互。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/long-tasks.png)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/long-tasks.png)
 
 ### V8为解析和编译的性能提升做了什么？
 
@@ -61,13 +62,13 @@ Addy Osmani ([@addyosmani](https://twitter.com/addyosmani)) 发布于2019年6月
 
 V8通过在Worker线程上解析和编译，将主线程上的解析和编译工作量平均减少了40%(例如在Facebook上减少了46%，在Pinterest上减少了62%)，性能能提升最大的是81%(YouTube)。这是除了现有的主线程之外的非主线程流解析和编译带来的性能提升。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/chrome-js-parse-times.svg)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/chrome-js-parse-times.svg)
 
 *不同版本的V8解析时间*
 
 我们还可以把对不同版本V8的CPU时间影响的变化进行可视化。在相同的时间内，Chrome 61解析完Facebook的JS脚本时，Chrome75已经解析完Facebook的JS脚本和Twitter的JS脚本6次了。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/js-parse-times-websites.svg)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/js-parse-times-websites.svg)
 
 *在Chrome 61解析Facebook的JS脚本时，Chrome 75可以同时解析Facebook的JS脚本和Twitter的JS脚本6次了。*
 
@@ -81,13 +82,13 @@ V8通过在Worker线程上解析和编译，将主线程上的解析和编译工
 
 说的具体一点就是，更老版本的Chrome会在开始解析脚本之前下载完整的脚本，这种方法很简单，但它并没有充分利用CPU。Chrome在41和68之间的版本，一旦下载开始，Chrome就开始在独立的线程上解析异步脚本和延迟脚本。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/script-streaming-1.svg)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/script-streaming-1.svg)
 
 *脚本包含多个块。至少30kB后V8开始流式传输。*
 
 在Chrome 71中，我们转到了一个基于任务的设置，调度程序可以同时解析多个异步或延迟脚本。这一变化的影响是主线程解析时间减少了20%，在实际网站上测量到的TTI/FID总体上提高了2%。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/script-streaming-2.svg)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/script-streaming-2.svg)
 
 *Chrome 71移动到基于任务的设置中，调度程序可以同时解析多个异步或延迟脚本。*
 
@@ -102,6 +103,7 @@ V8通过在Worker线程上解析和编译，将主线程上的解析和编译工
 Leszek Swirski的眨眼演示更详细：
 
 <iframe width="764" height="455" src="https://www.youtube.com/embed/D1UJgiG4_NI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- [Youtube视频地址：https://www.youtube.com/embed/D1UJgiG4_NI](https://www.youtube.com/embed/D1UJgiG4_NI) -->
 
 *LeszekSwirski在Blink 10上提出的[《零时间解析JavaScript》](https://www.youtube.com/watch?v=D1UJgiG4_NI)。*
 
@@ -109,7 +111,7 @@ Leszek Swirski的眨眼演示更详细：
 
 除了上面的内容之外，DevTools中还有一个问题，它以一种暗示它正在使用CPU(完整块)的方式呈现了整个解析器任务。但是，每当需要数据(需要遍历主线程)时，解析器就会阻塞。由于我们从单一的流线程转移到流任务，这个问题变得非常明显。下面是你在Chrome 69中看到的内容：
 
-![](https://v8.dev/_img/cost-of-javascript-2019/devtools-69.png)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/devtools-69.png)
 
 *DevTools问题，它以一种暗示它正在使用CPU(完整块)的方式呈现整个解析器任务。*
 
@@ -117,19 +119,19 @@ Leszek Swirski的眨眼演示更详细：
 
 Chrome 76描绘了一幅截然不同的画面：
 
-![](https://v8.dev/_img/cost-of-javascript-2019/devtools-76.png)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/devtools-76.png)
 
 *在Chrome 76中，解析被分解成多个较小的流任务。*
 
 一般来说，DevTools性能面板非常适合从宏观上分析页面上发生的事情。对于特定于V8的详细指标，如JavaScript解析和编译时间，我们建议使用Chrome跟踪和运行时调用统计(RCS)。在RCS结果中，`Parse-Background`和`Compile-Background`告诉你在主线程上解析和编译JavaScript花费了多少时间，而`Parse`和`Compile`则捕获主线程度量。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/rcs.png)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/rcs.png)
 
 ### 这些变化的实际影响有多大？
 
 让我们来看看一些真实站点的例子，以及脚本流是如何应用的。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/reddit-main-thread.svg)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/reddit-main-thread.svg)
 
 *主线程与Worker线程在MacBookPro上解析和编译Reddit的JS时间*
 
@@ -137,7 +139,7 @@ Redid.com有几个100kB包，它们被包装在外部函数中，导致在主线
 
 它们将一些较大的包拆分成更小的包(例如，每个包50kB)，这样就可以并行化最大化，这样每个包都可以被流解析，单独编译，并且在启动过程中减少主线程解析和编译。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/facebook-main-thread.svg)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/facebook-main-thread.svg)
 
 *主线程与Worker线程在MacBookPro上解析和编译Facebook的JS所花费的时间*
 
@@ -177,7 +179,7 @@ const data = JSON.parse('{"foo":42,"bar":1337}'); // 🚀
 
 V8的(字节)代码缓存优化可能会有所帮助。当第一次请求脚本时，Chrome会下载它并将其提供给V8进行编译。它还将文件存储在浏览器的磁盘缓存中。当第二次请求JS文件时，Chrome从浏览器缓存中获取该文件，并再次将其交给V8进行编译。但是，这次编译的代码是序列化的，并作为元数据附加到缓存的脚本文件中。
 
-![](https://v8.dev/_img/cost-of-javascript-2019/code-caching.png)
+![](https://yylifen.github.io/sundries-trans/js/cost-of-javascript-2019/images/code-caching.png)
 
 *V8中代码缓存工作方式的可视化*
 
