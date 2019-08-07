@@ -12,11 +12,11 @@
 
 * 2.这个东西能解决什么问题？
 
-如果你从来没有为这两个问题找到一个满意的答案，那么在你深入研究细节时，你就建立不了足够坚实的基础。这些问题在[React Hooks](https://tylermcginnis.com/courses/react-hooks/)上特别有趣。在发布Hooks时，React已经是JavaScript生态系统中[最受欢迎的前端框架](https://insights.stackoverflow.com/survey/2019)。尽管人们对此已经赞不绝口，React团队仍然认为有必要开发和发布Hooks。在各种媒体和博客文章中宣传Hooks的原因是要解决两个问题：(1)**为什么**在React已经广受好评的时候，React团队还是决定花这么多宝贵的资源来开发和发布Hooks，它解决了什么问题；(2)它能带来什么**好处**。为了更好地理解这两个问题的答案，首先需要更深入地了解我们之前是如何编写React应用程序的。
+如果你从来没有为这两个问题找到一个满意的答案，那么在你深入研究细节时，你就建立不了足够扎实的基础。这些问题在[React Hooks](https://tylermcginnis.com/courses/react-hooks/)上特别有趣。在发布Hooks时，React已经是JavaScript生态系统中[最受欢迎的前端框架](https://insights.stackoverflow.com/survey/2019)。尽管人们对此已经赞不绝口，React团队仍然认为有必要开发和发布Hooks。在各种媒体和博客文章中宣传Hooks的原因是要解决两个问题：(1)**为什么**在React已经广受好评的时候，React团队还是决定花这么多宝贵的资源来开发和发布Hooks，它解决了什么问题；(2)它能带来什么**好处**。为了更好地理解这两个问题的答案，首先需要更深入地了解我们之前是如何编写React应用程序的。
 
 ### createClass
 
-如果您很早就开始使用React，那么您一定记得API`React.createClass`。这是我们最初创建React组件的方式。用于描述组件的所有信息都将作为对象传递给`createClass`。
+如果你很早就开始使用React，那么你一定记得API`React.createClass`。这是我们最初创建React组件的方式。用于描述组件的所有信息都将作为对象传递给`createClass`。
 
 ```JavaScript
 const ReposGrid = React.createClass({
@@ -74,7 +74,7 @@ const ReposGrid = React.createClass({
 
 > 我们认为我这不是在设计类系统。我们只是想统一使用惯用的JavaScript方式创建类。- [React在v0.13.0版本中发布](https://reactjs.org/blog/2015/01/27/react-v0.13.0-beta-1.html)
 
-React v0.13.0引入了API`React.Component`，它允许您从现在开始用原生JavaScript类创建React组件。这是一个壮举，因为它更好地支持ECMAScript标准。
+React v0.13.0引入了API`React.Component`，它允许你从现在开始用原生JavaScript类创建React组件。这是一个壮举，因为它更好地支持ECMAScript标准。
 
 ```JavaScript
 class ReposGrid extends React.Component {
@@ -132,7 +132,7 @@ class ReposGrid extends React.Component {
 
 #### 构造函数`constructor`
 
-使用Class组件，可以将`constructor`函数方法中组件的状态初始化为实例(`this`)上的`state`属性。但是，根据ECMAScript规范，如果您要扩展一个子类(在本例中是`React.Component`)，您必须先调用`super`才能使用它。具体来说，在使用React时，您还必须记住将`props`传递给`super`。
+使用Class组件，可以将`constructor`函数方法中组件的状态初始化为实例(`this`)上的`state`属性。但是，根据ECMAScript规范，如果你要扩展一个子类(在本例中是`React.Component`)，你必须先调用`super`才能使用它。具体来说，在使用React时，你还必须记住将`props`传递给`super`。
 
 ```JavaScript
 constructor (props) {
@@ -153,11 +153,11 @@ constructor (props) {
 }
 ```
 
-我知道你现在在想什么。首先，这些问题是相当简单的。虽然调用`super(props)`并记得使用`bind`绑定您的方法有点烦人，但是这里也没错。其次，与JavaScript类的设计方式相比，这些甚至是一个与React无关的问题。这两点都是有效的。然而，我们作为开发者。即使是最简单的问题，你每天如果要处理20次，也会成为一个讨厌的问题。幸运的是，在从`createClass`切换到`React.Component`之后不久，有人提出了[Class Field](https://tylermcginnis.com/javascript-private-and-public-class-fields/)的提案。
+我知道你现在在想什么。首先，这些问题是相当简单的。虽然调用`super(props)`并记得使用`bind`绑定你的方法有点烦人，但是这里也没错。其次，与JavaScript类的设计方式相比，这些甚至是一个与React无关的问题。这两点都是有效的。然而，我们作为开发者。即使是最简单的问题，你每天如果要处理20次，也会成为一个讨厌的问题。幸运的是，在从`createClass`切换到`React.Component`之后不久，有人提出了[Class Field](https://tylermcginnis.com/javascript-private-and-public-class-fields/)的提案。
 
 #### Class Field
 
-Class Field允许您将实例属性作为类上的属性直接添加，而不必使用构造函数`constructor`。这对我们来说意味着，有了Class Field，我们之前讨论过的两个“缺乏深度的”问题都会得到解决。我们不再需要使用构造函数`constructor`来设置组件的初始状态，也不再需要在构造函数中`constructor`使用`.bind`绑定，因为我们可以使用箭头函数。
+Class Field允许你将实例属性作为类上的属性直接添加，而不必使用构造函数`constructor`。这对我们来说意味着，有了Class Field，我们之前讨论过的两个“肤浅的”问题都会得到解决。我们不再需要使用构造函数`constructor`来设置组件的初始状态，也不再需要在构造函数中`constructor`使用`.bind`绑定，因为我们可以使用箭头函数。
 
 ```JavaScript
 class ReposGrid extends React.Component {
@@ -241,7 +241,7 @@ React的整体想法是，通过将应用程序拆分为不同的组件（然后
 view = fn(state)
 ```
 
-实际上，构建应用程序不仅仅是UI层。需要组合和复用底层逻辑并不少见。但是，将UI与组件结合起来可能会很困难。从历史上看，React并没有给出一个很好的答案。
+实际上，构建应用程序不仅仅是UI层。需要组合和复用非可视逻辑并不少见。但是，将UI与组件结合起来可能会很困难。从历史上看，React并没有给出一个很好的答案。
 
 继续我们的例子，假设我们需要创建另一个也需要`repos`状态的组件。现在，这种状态和处理它的逻辑存在于`ReposGrid`组件中。我们该怎么处理这件事？最简单的方法是复制获取和处理repos的所有逻辑，并将其粘贴到新组件中。很诱人，但是不够好。一种更明智的方法是创建一个[高阶组件](https://tylermcginnis.com/react-higher-order-components/)，该组件封装所有共享逻辑，并将`loading`和`repos`作为props传递给任何需要它的组件。
 
@@ -302,7 +302,7 @@ export default withRepos(Profile)
 ```
 [代码在线编辑](https://codesandbox.io/s/why-react-hooks-withrepos-okjsj)
 
-这是可行的，之前(与[渲染Props](https://tylermcginnis.com/react-render-props/)一起)一直是共享底层逻辑的推荐解决方案。然而，这两种模式还是都有一些缺点。
+这是可行的，之前(与[渲染Props](https://tylermcginnis.com/react-render-props/)一起)一直是共享非可视逻辑的推荐解决方案。然而，这两种模式还是都有一些缺点。
 
 首先，如果你对它们不熟悉(即使你对它们不熟悉)，那么你会比较懵。对于我们的`withRepos`HOC，我们有一个函数，它将最终呈现的组件作为第一个参数，但返回一个新的类组件，这是逻辑的关键所在。过程挺复杂！
 
@@ -318,7 +318,7 @@ export default withHover(
 )
 ```
 
-比上面的情况更糟糕的是最终渲染的是什么。HOC(和类似的模式)迫使您重构和封装组件。最终会导致“封装地狱”，然后再次使它更难维护。
+比上面的情况更糟糕的是最终渲染的是什么。HOC(和类似的模式)迫使你重构和封装组件。最终会导致“封装地狱”，然后再次使它更难维护。
 
 ```JavaScript
 <WithHover>
@@ -355,7 +355,7 @@ export default withHover(
 
 * 通过生命周期方法组织组件，迫使我们将相关的逻辑分散到组件中。
 
-* React对于共享底层逻辑没有很好的原始支持。
+* React对于共享非可视逻辑没有很好的原始支持。
 
 现在我们需要一个新的组件API来解决所有的这些问题，同时保持简单、可组合、灵活和可扩展。这是一项相当艰巨的任务，但React团队却以某种方式完成了这个艰巨的任务。
 
@@ -368,5 +368,200 @@ export default withHover(
 > 有时候，优雅的实现只是一个函数，不是一种方法，不是类，不是框架，只是个功能。
 > - John Carmack. Oculus VR CTO
 
+当然，我们需要找到一种方法来让功能组件拥有状态和生命周期方法的能力，但是如果我们这样做了，我们会看到什么好处呢？
+
+好吧，我们不再需要调用`super(props)`，我们不再需要担心显式`bind`绑定我们的方法或`this`关键字，我们也不再使用Class Field。从本质上讲，我们之前讨论过的所有“肤浅的”问题都会消失。
+
+```JavaScript
+(ノಥ,_｣ಥ)ノ彡 React.Component 🗑
+
+function ヾ(Ő‿Ő✿)
+```
+
+现在，更困难的问题是：
+
+* State
+
+* 生命周期函数
+
+* 共享非可视逻辑
+
+#### State
+
+由于我们不再使用类或`this`，我们需要一种新的方法来添加和管理组件内部的状态。从React的v16.8.0版本开始，React通过`useState`方法给我们提供了这种新方法。
+
+> `useState`是你在本课程中看到的许多“Hooks”中的第一个。让这篇文章的其余部分作为一个简单的介绍。我们将在以后的章节中深入研究`useState`以及其他Hooks。
+
+`useState`接受一个参数，即状态的初始值。它返回的是一个数组，其中第一个是状态块，第二个是更新该状态的函数。
+
+```JavaScript
+const loadingTuple = React.useState(true)
+const loading = loadingTuple[0]
+const setLoading = loadingTuple[1]
+
+...
+
+loading // true
+setLoading(false)
+loading // false
+```
+
+正如你所看到的，单独抓取数组中的每一项并不是最好的开发者体验。这只是为了演示`useState`是如何返回数组的。通常，你将使用Array析构来获取一行中的值。
+
+```JavaScript
+// const loadingTuple = React.useState(true)
+// const loading = loadingTuple[0]
+// const setLoading = loadingTuple[1]
+
+const [ loading, setLoading ] = React.useState(true) // 👌
+```
+
+现在，让我们用新发现的`useState`Hook知识更新`ReposGrid`组件。
+
+```JavaScript
+function ReposGrid ({ id }) {
+  const [ repos, setRepos ] = React.useState([])
+  const [ loading, setLoading ] = React.useState(true)
+
+  if (loading === true) {
+    return <Loading />
+  }
+
+  return (
+    <ul>
+      {repos.map(({ name, handle, stars, url }) => (
+        <li key={name}>
+          <ul>
+            <li><a href={url}>{name}</a></li>
+            <li>@{handle}</li>
+            <li>{stars} stars</li>
+          </ul>
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+[代码在线编辑](https://codesandbox.io/s/why-react-hooks-usestate-ddhc4)
 
 
+* State✅
+
+* 生命周期函数
+
+* 共享非可视逻辑
+
+#### 生命周期函数
+
+有件事可能会让你伤心(或快乐？)。当使用React Hooks时，我希望你将你所知道的关于传统的React生命周期方法以及这种思维方式的所有东西都拿出来，然后忘记它。我们已经看到了考虑组件生命周期的问题-“这种[生命周期]划分自然迫使我们在组件中写下相关的逻辑。”相反，考虑一下**同步**。
+
+想想你曾经使用过生命周期事件的任何时候。不管是设置组件的初始状态、获取数据、更新DOM等等，最终目标总是同步。通常，同步响应域之外的东西(API请求、DOM等)。有反应的地方(成分状态)，反之亦然。
+
+当我们考虑同步而不是生命周期事件时，它允许我们将相关的逻辑块组合在一起。为了做到这一点，Reaction给了我们另一个叫做`useEffect`的钩子。
+
+定义，`useEffect`允许你在函数组件中执行副作用。它有两个参数，一个函数和一个可选数组。函数定义要运行的副作用，(可选的)数组定义何时“重新同步”(或重新运行)效果。
+
+```JavaScript
+React.useEffect(() => {
+  document.title = `Hello, ${username}`
+}, [username])
+```
+
+在上面的代码中，只要`username`发生变化，传递给`useEffect`的函数就会运行。因此，将文档的标题与`Hello，${username}`相关的所有解析。
+
+现在，我们如何使用代码中的`useEffect`Hook来将`repos`与API`fetchRepos`请求同步？
+
+```JavaScript
+function ReposGrid ({ id }) {
+  const [ repos, setRepos ] = React.useState([])
+  const [ loading, setLoading ] = React.useState(true)
+
+  React.useEffect(() => {
+    setLoading(true)
+
+    fetchRepos(id)
+      .then((repos) => {
+        setRepos(repos)
+        setLoading(false)
+      })
+  }, [id])
+
+  if (loading === true) {
+    return <Loading />
+  }
+
+  return (
+    <ul>
+      {repos.map(({ name, handle, stars, url }) => (
+        <li key={name}>
+          <ul>
+            <li><a href={url}>{name}</a></li>
+            <li>@{handle}</li>
+            <li>{stars} stars</li>
+          </ul>
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+[代码在线编辑](https://codesandbox.io/s/why-react-hooks-useeffect-0m35p)
+
+很狡猾对吧？我们已经成功地摆脱了`React.Component`、`constructor`、`super`、`this`，更重要的是，我们不再在整个组件中分散(和复制)我们的效果逻辑。
+
+* State✅
+
+* 生命周期函数✅
+
+* 共享非可视逻辑
+
+#### 共享非可视逻辑
+
+前面我们提到，React没有很好地解决共享非可视逻辑的原因是因为“将UI耦合到组件上”。这会导致创建组件的模式过于复杂，如[高阶组件](https://tylermcginnis.com/react-higher-order-components/)或[渲染props](https://tylermcginnis.com/react-render-props/)。正如你现在可能猜到的那样，Hooks也有了答案。不过，可能不是你想的那样。没有内置的Hook来共享非可视逻辑，相反，你可以创建自己的自定义Hook，这些Hook与任何UI都是解耦的。
+
+我们可以通过创建自己的定制`useRepos`Hook来看到这一点。这个Hook将接受我们想要获取的Repos的`id`，并且(坚持使用类似的API)将返回一个数组，第一个是`loading`状态，第二个是`repos`状态。
+
+```JavaScript
+function useRepos (id) {
+  const [ repos, setRepos ] = React.useState([])
+  const [ loading, setLoading ] = React.useState(true)
+
+  React.useEffect(() => {
+    setLoading(true)
+
+    fetchRepos(id)
+      .then((repos) => {
+        setRepos(repos)
+        setLoading(false)
+      })
+  }, [id])
+
+  return [ loading, repos ]
+}
+```
+开心的是，我们需要获取`repos`相关的任何逻辑都可以在这个自定义钩子中抽象出来。现在，不管我们在哪个组件中，即使它是非可视逻辑，每当我们需要有关`repos`的数据时，我们都可以使用`useRepos`自定义钩子。
+
+```JavaScript
+function ReposGrid ({ id }) {
+  const [ loading, repos ] = useRepos(id)
+
+  ...
+}
+```
+
+```JavaScript
+function Profile ({ user }) {
+  const [ loading, repos ] = useRepos(user.id)
+
+  ...
+}
+```
+[代码在线编辑](https://codesandbox.io/s/why-react-hooks-custom-hooks-t4rqv)
+
+* State✅
+
+* 生命周期函数✅
+
+* 共享非可视逻辑✅
+
+Hooks的营销理念是，你可以在功能组件中使用state。事实上，Hooks不止这些。它们是关于改进代码复用、组合和更好的缺省值的。我们还有很多关于Hooks的内容，但是现在你已经知道了它们存在的原因，我们就有了一个扎实的基础。
