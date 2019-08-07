@@ -10,5 +10,7 @@
 
 * 【2019-07-07】[JavaScript性能优化之2019](js/cost-of-javascript-2019/ch.md)
 
+* 【2019-08-07】[为什么需要React Hooks?](js/why-react-hooks/ch.md)
+
 
 

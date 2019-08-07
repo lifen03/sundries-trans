@@ -9,3 +9,5 @@
 * [你可能不需要ReCAPTCHA](other/you-probably-dont-need-recaptcha/ch.md)
 
 * [JavaScript性能优化之2019](js/cost-of-javascript-2019/ch.md)
+
+* [为什么需要React Hooks?](js/why-react-hooks/ch.md)
