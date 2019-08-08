@@ -1,16 +1,14 @@
-## React虚拟DOM原理追踪
+## React虚拟DOM原理追踪(动画教程)
 
 > 使用React来构建UI的你需要知道它实际上是如何工作的。
 
-作者：[JavaScript Teacher](https://twitter.com/js_tut) @2019-07-31
-
-翻译：[林毅](https://www.yuque.com/gzlinyi)   校验：[freedom](https://github.com/yylifen)
+作者：[JavaScript Teacher](https://twitter.com/js_tut) @2019-07-31   翻译：[林毅](https://www.yuque.com/gzlinyi)   校验：[freedom](https://github.com/yylifen)
 
 ### 首次启动一个React <App />
 
 React会自动将App类挂载到根目录的应用程序容器
 
-![Mounting.gif](https://miro.medium.com/max/1000/1*NBBZYfjeVBfHa1gPnMZJzA.gif)
+![Mounting.gif](https://yylifen.github.io/sundries-trans/js/react-virtual-dom-postmortem/assets/1_NBBZYfjeVBfHa1gPnMZJzA.gif)
 
 > 第一次挂载<App />
 
@@ -22,7 +20,7 @@ React会自动将App类挂载到根目录的应用程序容器
 
 **DIFF**ing算法是寻找两个虚拟DOM之间的差异。稍等，有两个虚拟DOM吗？我认为只有一个，React将之前的虚拟DOM和新生成的虚拟DOM进行比较。只有在检测有更改时，它才会最终更新到浏览器的DOM:
 
-![Diffing.gif](https://miro.medium.com/max/1000/1*BAleNGsko42ArMZKbsjPRA.gif)
+![Diffing.gif](https://yylifen.github.io/sundries-trans/js/react-virtual-dom-postmortem/assets/1_BAleNGsko42ArMZKbsjPRA.gif)
 
 > React的Diffing算法通过抽象动画表示。如果发现这两棵虚拟DOM树是不同的，那么将最新的一个与浏览器中的实际DOM进行协调。
 
@@ -42,24 +40,24 @@ React组件不过是一个JavaScript对象。React以二叉树的形式表示整
 
 `render()`函数的作用是：更新虚拟DOM组件。如果这个新的虚拟DOM树和之前渲染的虚拟DOM树不同，那react也会更新浏览器中实际的DOM。你不需要直接在任何地方更新浏览器的DOM - 特别是不能从`render()`函数中更新。
 
-![image.png](https://miro.medium.com/max/1000/1*ixymleyewAuYn8WsPOV7Ng.png)
+![image.png](https://yylifen.github.io/sundries-trans/js/react-virtual-dom-postmortem/assets/1_ixymleyewAuYn8WsPOV7Ng.png)
 
 > 不要使用以某种方式直接更新DOM，会污染`render()`函数。
 
 你最好不要在`render()`函数中进行http请求、jQuery、Ajax或fetch调用来改变**state**（即使使用**setstate**），因为它应该是纯的。渲染函数始终作为最后一步执行，只是为了所有虚拟DOM更新后更新UI的。
 
 ### 生命周期事件
-当组件首次挂载到DOM时，React会创建**componentWillMount**事件。 在浏览器的DOM中实际挂载（第一次被渲染）虚拟组件之后，将执行另一个名为**componentDidMount**的生命周期事件。
+当组件首次挂载到DOM时，React会创建**componentWillMount**事件。在浏览器的DOM中实际挂载（第一次被渲染）虚拟组件之后，将执行另一个名为**componentDidMount**的生命周期事件。
 
 在整个应用程序的生命周期中，你需要在这些生命周期事件方法中编写组件的大部分逻辑。
 
-### 下一个动画钩子？
+### 下一个动画教程：Hooks？
 
-我认为这是一个虚拟DOM和生命周期函数的原理分析课程。
+我认为这是一个虚拟DOM和生命周期函数的原理分析教程。
 
-许多开发者已经开始学习Hooks。 根据React的文档，组件生命周期事件甚至被认为是不安全的，并且将来可能会过时。制作这些动画仍然很有趣， 我敢肯定，对于那些刚接触React的人或者对其发展历史感兴趣的人，至少会踩几次坑。
+许多开发者已经开始学习Hooks。根据React的文档，组件生命周期事件甚至被认为是不安全的，并且将来可能会过时。制作这些动画仍然很有趣， 我敢肯定，对于那些刚接触React的人或者对其发展历史感兴趣的人，至少会踩几次坑。
 
-Hooks我也正在学习。 希望有一天我会制作Hooks的动画教程！ 在此之前，保持联系！可以通过一下渠道关注我：
+Hooks我也正在学习。希望有一天我会制作Hooks的动画教程！在此之前，保持联系！可以通过一下渠道关注我：
 
 * @Twitter [https://twitter.com/js_tut](https://twitter.com/js_tut)
 * @Instagram [https://www.instagram.com/javascriptteacher/](https://www.instagram.com/javascriptteacher/)

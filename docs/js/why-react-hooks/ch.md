@@ -2,7 +2,7 @@
 
 作者：[Tyler McGinnis](https://twitter.com/tylermcginnis) @2019-07-30  翻译&校验：[freedom](https://github.com/yylifen)
 
-<iframe width="864" height="486" src="https://www.youtube.com/embed/eX_L39UvZes" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="864" height="486" src="https://yylifen.github.io/sundries-trans/js/why-react-hooks/assets/why-react-hooks.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### 前言
 
@@ -12,7 +12,7 @@
 
 * 2.这个东西能解决什么问题？
 
-如果你从来没有为这两个问题找到一个满意的答案，那么在你深入研究细节时，你就建立不了足够扎实的基础。这些问题在[React Hooks](https://tylermcginnis.com/courses/react-hooks/)上特别有趣。在发布Hooks时，React已经是JavaScript生态系统中[最受欢迎的前端框架](https://insights.stackoverflow.com/survey/2019)。尽管人们对此已经赞不绝口，React团队仍然认为有必要开发和发布Hooks。在各种媒体和博客文章中宣传Hooks的原因是要解决两个问题：(1)**为什么**在React已经广受好评的时候，React团队还是决定花这么多宝贵的资源来开发和发布Hooks，它解决了什么问题；(2)它能带来什么**好处**。为了更好地理解这两个问题的答案，首先需要更深入地了解我们之前是如何编写React应用程序的。
+如果你从来没有为这两个问题找到一个满意的答案，那在深入研究细节时，你就建立不了足够扎实的基础。这些问题在[React Hooks](https://tylermcginnis.com/courses/react-hooks/)上特别有趣。发布Hooks时，React已经是JavaScript生态系统中[最受欢迎的前端框架](https://insights.stackoverflow.com/survey/2019)。尽管人们对此已经赞不绝口，React团队仍然认为有必要开发和发布Hooks。在各种媒体和博客文章中宣传Hooks的原因是要解决两个问题：(1)**为什么**在React已经广受好评的时候，React团队还是决定花这么多宝贵的资源来开发和发布Hooks，它解决了什么问题；(2)它能带来什么**好处**。为了更好地理解这两个问题的答案，首先我们需要更深入地了解之前是如何编写React应用程序的。
 
 ### createClass
 
@@ -68,7 +68,7 @@ const ReposGrid = React.createClass({
 ```
 [代码在线编辑](https://codesandbox.io/s/why-react-hooks-createclass-iw6s5)
 
-`createClass`是一种创建React组件的简单且有效的方法。最初使用API`createClass`的原因是，当时JavaScript没有内置的类系统。当然，最终改变了。在ES6中，JavaScript引入了class关键字，并使用它提供了在JavaScript中创建类的原生方式。这使得React处境尴尬。要么继续使用`createClass`，拒绝追随JavaScript的发展，要么服从ECMAScript标准，接受类。历史证明，他们选择了后者。
+`createClass`是一种创建React组件的简单且有效的方法。最初使用API`createClass`的原因是，当时JavaScript没有内置的类系统。当然，这个局面最终改变了。在ES6中，JavaScript引入了class关键字，并使用它提供了在JavaScript中创建类的原生方式。这使得React处境尴尬。要么继续使用`createClass`，拒绝追随JavaScript的发展，要么服从ECMAScript标准，接受类。历史证明，他们选择了后者。
 
 ### React.Component
 
@@ -141,6 +141,7 @@ constructor (props) {
   ...
 }
 ```
+
 #### 自动绑定
 
 当使用`createClass`时，React将自动地将所有方法绑定到组件的实例，如下所示。对于`React.Component`就不是这样的。很快，[各地的React开发者](https://stackoverflow.com/questions/32317154/react-uncaught-typeerror-cannot-read-property-setstate-of-undefined)都意识到他们不知道[`this`关键字](https://tylermcginnis.com/this-keyword-call-apply-bind-javascript/)是如何工作的。与其使用“只起作用”的方法调用，还不如在类的构造函数(`constructor`)中记住`.bind`方法。如果没有，就会出现流行的“无法读取未定义的属性集状态”错误。
@@ -153,7 +154,7 @@ constructor (props) {
 }
 ```
 
-我知道你现在在想什么。首先，这些问题是相当简单的。虽然调用`super(props)`并记得使用`bind`绑定你的方法有点烦人，但是这里也没错。其次，与JavaScript类的设计方式相比，这些甚至是一个与React无关的问题。这两点都是有效的。然而，我们作为开发者。即使是最简单的问题，你每天如果要处理20次，也会成为一个讨厌的问题。幸运的是，在从`createClass`切换到`React.Component`之后不久，有人提出了[Class Field](https://tylermcginnis.com/javascript-private-and-public-class-fields/)的提案。
+我知道你现在在想什么。首先，这些问题是相当简单的。虽然调用`super(props)`并记得使用`bind`绑定你的方法有点烦人，但是这里也没错。其次，与JavaScript类的设计方式相比，这些甚至是一个与React无关的问题。这两种方式都是有效的。然而，我们作为开发者。即使是最简单的问题，你每天如果要处理20次，也会成为一个讨厌的问题。幸运的是，在从`createClass`切换到`React.Component`之后不久，有人提出了[Class Field](https://tylermcginnis.com/javascript-private-and-public-class-fields/)的提案。
 
 #### Class Field
 
@@ -304,7 +305,7 @@ export default withRepos(Profile)
 
 这是可行的，之前(与[渲染Props](https://tylermcginnis.com/react-render-props/)一起)一直是共享非可视逻辑的推荐解决方案。然而，这两种模式还是都有一些缺点。
 
-首先，如果你对它们不熟悉(即使你对它们不熟悉)，那么你会比较懵。对于我们的`withRepos`HOC，我们有一个函数，它将最终呈现的组件作为第一个参数，但返回一个新的类组件，这是逻辑的关键所在。过程挺复杂！
+首先，如果你对它们不熟悉(即使你对它们不熟悉)，你就会比较懵。对于我们的`withRepos`HOC，我们有一个函数，它将最终呈现的组件作为第一个参数，但返回一个新的类组件，这是逻辑的关键所在。过程挺复杂！
 
 其次，如果我们有一个以上的高阶组件正在使用。你可以想象得到，它很快就失控了。
 
@@ -318,7 +319,7 @@ export default withHover(
 )
 ```
 
-比上面的情况更糟糕的是最终渲染的是什么。HOC(和类似的模式)迫使你重构和封装组件。最终会导致“封装地狱”，然后再次使它更难维护。
+比上面的情况更糟糕的是最终渲染的是什么。高阶组件HOC(和类似的模式)迫使你重构和封装组件。最终会导致“封装地狱”，然后再次使它更难维护。
 
 ```JavaScript
 <WithHover>
@@ -341,11 +342,11 @@ export default withHover(
 
 ### 现在的状况
 
-我们现在是这样的：
+我们现在的局面是这样的：
 
 * React很受欢迎。
 
-* React组件使用类，因为这是当时最有意义的方式。
+* React组件使用类创建，因为这是当时最有意义的方式。
 
 * 使用super(props)是很烦人的。
 
@@ -455,11 +456,11 @@ function ReposGrid ({ id }) {
 
 有件事可能会让你伤心(或快乐？)。当使用React Hooks时，我希望你将你所知道的关于传统的React生命周期方法以及这种思维方式的所有东西都拿出来，然后忘记它。我们已经看到了考虑组件生命周期的问题-“这种[生命周期]划分自然迫使我们在组件中写下相关的逻辑。”相反，考虑一下**同步**。
 
-想想你曾经使用过生命周期事件的任何时候。不管是设置组件的初始状态、获取数据、更新DOM等等，最终目标总是同步。通常，同步响应域之外的东西(API请求、DOM等)。有反应的地方(成分状态)，反之亦然。
+想想你曾经使用过生命周期事件的任何时候。不管是设置组件的初始状态、获取数据、更新DOM等等，最终目标总是同步。通常在有React的地方(组件状态)，同步响应域之外的东西(API请求、DOM等)，反之亦然。
 
-当我们考虑同步而不是生命周期事件时，它允许我们将相关的逻辑块组合在一起。为了做到这一点，Reaction给了我们另一个叫做`useEffect`的钩子。
+当我们考虑同步而不是生命周期事件时，它允许我们将相关的逻辑块组合在一起。为了做到这一点，React给了我们另一个叫做`useEffect`的Hooks。
 
-定义，`useEffect`允许你在函数组件中执行副作用。它有两个参数，一个函数和一个可选数组。函数定义要运行的副作用，(可选的)数组定义何时“重新同步”(或重新运行)效果。
+定义Hooks，`useEffect`允许你在函数组件中执行副作用。它有两个参数，一个函数和一个可选数组。函数定义要运行的副作用，(可选的)数组定义何时“重新同步”(或重新运行)效果。
 
 ```JavaScript
 React.useEffect(() => {
@@ -467,7 +468,7 @@ React.useEffect(() => {
 }, [username])
 ```
 
-在上面的代码中，只要`username`发生变化，传递给`useEffect`的函数就会运行。因此，将文档的标题与`Hello，${username}`相关的所有解析。
+在上面的代码中，只要`username`发生变化，传递给`useEffect`的函数就会运行。因此，将文档的标题与`Hello，${username}`所有相关的进行解析。
 
 现在，我们如何使用代码中的`useEffect`Hook来将`repos`与API`fetchRepos`请求同步？
 
@@ -539,7 +540,7 @@ function useRepos (id) {
   return [ loading, repos ]
 }
 ```
-开心的是，我们需要获取`repos`相关的任何逻辑都可以在这个自定义钩子中抽象出来。现在，不管我们在哪个组件中，即使它是非可视逻辑，每当我们需要有关`repos`的数据时，我们都可以使用`useRepos`自定义钩子。
+开心的是，我们需要获取`repos`相关的任何逻辑都可以在这个自定义钩子中抽象出来。现在，不管我们在哪个组件中，即使它是非可视逻辑，每当我们需要有关`repos`的数据时，我们都可以使用`useRepos`自定义Hook。
 
 ```JavaScript
 function ReposGrid ({ id }) {

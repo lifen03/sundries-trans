@@ -12,5 +12,5 @@
 
 * 【2019-08-07】[为什么需要React Hooks?](js/why-react-hooks/ch.md)
 
-* 【2019-08-08】[React虚拟DOM原理追踪](js/react-virtual-dom-postmortem/ch.md)
+* 【2019-08-08】[React虚拟DOM原理追踪(动画教程)](js/react-virtual-dom-postmortem/ch.md)
 
