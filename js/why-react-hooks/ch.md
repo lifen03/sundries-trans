@@ -1,8 +1,6 @@
 ## 为什么需要React Hooks?
 
-作者：[Tyler McGinnis](https://twitter.com/tylermcginnis) @2019-07-30
-
-*翻译&校验：[freedom](https://github.com/yylifen)*
+作者：[Tyler McGinnis](https://twitter.com/tylermcginnis) @2019-07-30  翻译&校验：[freedom](https://github.com/yylifen)
 
 <iframe width="864" height="486" src="https://www.youtube.com/embed/eX_L39UvZes" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

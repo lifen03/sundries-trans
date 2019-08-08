@@ -1,6 +1,8 @@
 ## Javascript中async和await循环
 
-创作：Zell Liew @2019-05-21
+作者：Zell Liew @2019-05-21
+
+*翻译&校验：[freedom](https://github.com/yylifen)*
 
 ![JavaScript async and await in loops](https://cdn-images-1.medium.com/max/800/1*p2upvpYKRT0-qtTP61LOYg.gif)
 

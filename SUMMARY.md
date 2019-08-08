@@ -11,3 +11,5 @@
 * [JavaScript性能优化之2019](js/cost-of-javascript-2019/ch.md)
 
 * [为什么需要React Hooks?](js/why-react-hooks/ch.md)
+
+* [React虚拟DOM原理追踪](js/react-virtual-dom-postmortem/ch.md)
