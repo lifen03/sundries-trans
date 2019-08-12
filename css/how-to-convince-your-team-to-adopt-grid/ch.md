@@ -2,9 +2,9 @@
 
 ![](https://yylifen.github.io/sundries-trans/other/how-to-convince-your-team-to-adopt-grid/images/how-to-convince-your-team-2b6332cbb969c7150425ca2858420ec4.svg)
 
-<b>作者：[CSSInRealLife](https://twitter.com/CSSInRealLife)@创作时间：2019-03-09   [原文地址](https://css-irl.info/how-to-convince-your-team-to-adopt-grid/)</b>
+<b>作者：[CSSInRealLife](https://twitter.com/CSSInRealLife) @2019-03-09  [原文地址](https://css-irl.info/how-to-convince-your-team-to-adopt-grid/)</b>
 
-*翻译&校验：[freedom](https://github.com/yylifen)*
+> 翻译&校验：[freedom](https://github.com/yylifen)
 
 你是不是想使用CSS Grid布局但又难以说服你的团队其他成员（你的同事或者你的领导）？ 最近有人问我，有什么建议可以说服对CSS Grid持有怀疑态度的团队在他们的工作流中采用CSS Grid。 虽然我自己在这方面没有遇到任何重大障碍， 但我经常听到一个这样的故事。 你已经准备好潜入并使用最新的现代布局技术，却只有具备更高的权利才能推动。  
 

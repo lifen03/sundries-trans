@@ -2,7 +2,8 @@
 
 > 使用React来构建UI的你需要知道它实际上是如何工作的。
 
-作者：[JavaScript Teacher](https://twitter.com/js_tut) @2019-07-31   翻译：[林毅](https://www.yuque.com/gzlinyi)   校验：[freedom](https://github.com/yylifen)
+作者：[JavaScript Teacher](https://twitter.com/js_tut) @2019-07-31 [原文地址](https://medium.com/@js_tut/react-animated-tutorial-7a46fa3c2b96)
+> 翻译：[林毅](https://www.yuque.com/gzlinyi)   校验：[freedom](https://github.com/yylifen)
 
 ### 首次启动一个React <App />
 

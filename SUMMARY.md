@@ -2,7 +2,7 @@
 
 * [杂物空间·翻译](README.md)
 
-* [如何说服你的团队采用CSS Grid](other/how-to-convince-your-team-to-adopt-grid/ch.md)
+* [如何说服你的团队采用CSS Grid](css/how-to-convince-your-team-to-adopt-grid/ch.md)
 
 <!-- * [Javascript中async和await循环调用](js/javascript-async-and-await-in-loops/ch.md) -->
 
@@ -13,3 +13,5 @@
 * [为什么需要React Hooks?](js/why-react-hooks/ch.md)
 
 * [React虚拟DOM原理追踪(动画教程)](js/react-virtual-dom-postmortem/ch.md)
+
+* [像@keyframes和@media这样的@rule有多特别](css/how-much-specificity-do-rules-have-like-keyframes-and-media/ch.md)
